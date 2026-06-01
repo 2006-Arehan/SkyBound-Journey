@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jammu & Kashmir | SkyBound Journey</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>body{font-family:'Inter',sans-serif;background-color:#f8fafc;}</style>
+</head>
+<body class="text-gray-800">
+
+  <!-- HEADER -->
+  <header class="bg-white/80 backdrop-blur-lg fixed top-0 left-0 right-0 z-50 shadow-sm">
+    <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+      <a href="index.html" class="text-2xl font-bold text-gray-900 flex items-center">
+        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" class="text-indigo-600 mr-2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        SkyBound Journey
+      </a>
+      <a href="index.html#planner" class="bg-indigo-600 text-white px-4 py-2 rounded-full hover:bg-indigo-700 transition">Plan Trip</a>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="h-[70vh] bg-cover bg-center flex items-center justify-center text-white"
+    style="background-image:url('https://placehold.co/1600x900/3B82F6/FFFFFF?text=Jammu+%26+Kashmir');">
+    <div class="bg-black/40 p-6 rounded-xl text-center">
+      <h1 class="text-5xl font-extrabold mb-3">Jammu & Kashmir</h1>
+      <p class="text-lg text-gray-200">Heaven on Earth — snow-capped peaks, gardens & houseboats.</p>
+    </div>
+  </section>
+
+  <!-- TOP EXPERIENCES -->
+  <section class="py-16 container mx-auto px-6">
+    <h2 class="text-3xl font-bold text-gray-900 mb-6">Top Experiences in J&K</h2>
+    <ul class="list-disc pl-6 text-gray-700 space-y-2">
+      <li>Shikara rides on Dal Lake in Srinagar.</li>
+      <li>Visit Gulmarg for skiing & cable car rides.</li>
+      <li>Explore Pahalgam’s scenic meadows.</li>
+      <li>Seek blessings at Vaishno Devi temple.</li>
+      <li>Savor Kashmiri wazwan and kahwa tea.</li>
+    </ul>
+
+    <div class="mt-10">
+      <a href="index.html#planner" class="bg-indigo-600 text-white px-6 py-3 rounded-lg hover:bg-indigo-700 transition">
+        Generate My Itinerary
+      </a>
+    </div>
+  </section>
+
+  <!-- This is where itinerary will be inserted -->
+  <section id="itinerarySection" class="py-16 container mx-auto px-6 hidden">
+    <h2 class="text-3xl font-bold text-gray-900 mb-6">Your Custom Itinerary</h2>
+
+    <div id="loadingBox" class="flex items-center space-x-3 text-indigo-600">
+      <svg class="animate-spin h-8 w-8 opacity-75" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"/>
+        <path fill="currentColor" d="M4 12a8 8 0 018-8V0C5.3 0 0 5.3 0 12h4z"/>
+      </svg>
+      <p class="text-gray-700 text-lg">Preparing your personalized plan...</p>
+    </div>
+
+    <div id="itineraryText" class="mt-6 text-gray-800 leading-relaxed"></div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="bg-gray-900 text-white py-10 text-center">
+    <p>&copy; 2025 SkyBound Journey. All rights reserved.</p>
+  </footer>
+
+  <!-- SCRIPT FOR AUTO PLAN GENERATION -->
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const days = params.get("days"); // 3, 5, 7
+
+    if (days) {
+      document.getElementById("itinerarySection").classList.remove("hidden");
+
+      async function callGemini(prompt) {
+        const apiKey = "YOUR_API_KEY_HERE"; // ADD YOUR KEY
+
+        const result = await fetch(
+          `https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${apiKey}`,
+          {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              contents: [{ parts: [{ text: prompt }] }]
+            })
+          }
+        );
+
+        const data = await result.json();
+        return data?.candidates?.[0]?.content?.parts?.[0]?.text || "Failed to generate itinerary.";
+      }
+
+      const prompt =
+        `Create a ${days}-day detailed itinerary for Jammu & Kashmir. ` +
+        `Include day-wise breakdown, best places, travel tips, food recommendations, and a short summary. ` +
+        `Write clean HTML, with <h3> for day titles and <ul> for bullet points.`;
+
+
+      callGemini(prompt).then(text => {
+        document.getElementById("loadingBox").classList.add("hidden");
+        document.getElementById("itineraryText").innerHTML = text;
+      });
+    }
+  </script>
+
+</body>
+</html>
