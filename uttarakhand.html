@@ -5,85 +5,112 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Uttarakhand | SkyBound Journey</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
-    body {
-      font-family: 'Inter', sans-serif;
-      background-color: #f8fafc;
-    }
+    body { font-family: 'Inter', sans-serif; background-color: #f8fafc; }
   </style>
 </head>
-<body class="text-gray-800">
+<body class="text-gray-800 flex flex-col min-h-screen">
 
   <!-- Header -->
-  <header class="bg-white/80 backdrop-blur-lg fixed top-0 left-0 right-0 z-50 shadow-sm">
+  <header class="bg-white/90 backdrop-blur-md fixed top-0 left-0 right-0 z-50 shadow-sm">
     <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-      <a href="index.html" class="text-2xl font-bold text-gray-900 flex items-center">
-        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" class="text-indigo-600 mr-2">
-          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-        </svg>
-        SkyBound Journey
+      <a href="index.html" class="text-2xl font-extrabold text-gray-900 flex items-center gap-2">
+        <div class="bg-indigo-600 text-white p-2 rounded-xl">
+          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <span>SkyBound <span class="text-indigo-600">Journey</span></span>
       </a>
 
-      <nav>
-        <a href="index.html#planner" 
-           class="bg-indigo-600 text-white px-4 py-2 rounded-full hover:bg-indigo-700 transition">
-           Plan Trip
-        </a>
+      <nav class="hidden md:flex space-x-6 items-center font-medium">
+        <a href="index.html" class="text-gray-600 hover:text-indigo-600 transition">Home</a>
+        <a href="uttarakhand_places.html" class="text-gray-600 hover:text-indigo-600 transition">Explore Cities</a>
+        <a href="index.html#planner" class="bg-indigo-600 text-white px-5 py-2 rounded-full hover:bg-indigo-700 transition shadow-md">AI Planner</a>
       </nav>
     </div>
   </header>
 
   <!-- Hero Section -->
-  <section class="h-[70vh] bg-cover bg-center flex items-center justify-center text-white"
-    style="background-image:url('3_Nainital-1.jpg');">
-      
-    <div class="bg-black/40 p-6 rounded-xl text-center mt-20">
-      <h1 class="text-5xl font-extrabold mb-3">Uttarakhand</h1>
-      <p class="text-lg text-gray-200 max-w-xl">
-        The Land of the Gods — serenity, spirituality, lush valleys & the mighty Himalayas.
+  <section class="h-[65vh] bg-cover bg-center flex items-center justify-center text-white relative pt-20"
+    style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('3_Nainital-1.jpg');">
+    <div class="text-center max-w-3xl px-6">
+      <span class="bg-emerald-600/80 text-white text-xs font-bold uppercase tracking-wider px-4 py-1.5 rounded-full">Devbhoomi - Land of Gods</span>
+      <h1 class="text-5xl md:text-6xl font-black mt-4 mb-3">Uttarakhand</h1>
+      <p class="text-lg md:text-xl text-gray-200 font-light">
+        Serenity, spirituality, lush Himalayan valleys, sacred temples & high-adventure treks.
       </p>
     </div>
   </section>
 
   <!-- Main Content -->
-  <section class="py-16 container mx-auto px-6">
-    <h2 class="text-3xl font-bold text-gray-900 mb-6">Top Experiences in Uttarakhand</h2>
-
-    <ul class="list-disc pl-6 text-gray-700 space-y-3">
-      <li>Experience the divine <strong>Ganga Aarti</strong> in Haridwar and Rishikesh.</li>
-      <li>Trek to <strong>Valley of Flowers</strong> or embark on the <strong>Kedarnath</strong> yatra.</li>
-      <li>Unwind in the hill stations of <strong>Nainital</strong> and <strong>Mussoorie</strong>.</li>
-      <li>Go <strong>river rafting</strong>, bungee jumping & attend yoga retreats in Rishikesh.</li>
-      <li>Taste Pahadi specialties like <strong>Aloo Ke Gutke</strong>, <strong>Chainsoo</strong>, and <strong>Kafuli</strong>.</li>
-    </ul>
-    <div></div>
-<button id="plan3Days" class="bg-indigo-600 text-white px-6 py-3 rounded-lg hover:bg-indigo-700 transition shadow-md">
-    3-Day Planner
-  </button>
-
-
-  <button id="plan7Days" class="bg-indigo-600 text-white px-6 py-3 rounded-lg hover:bg-indigo-700 transition shadow-md">
-    7-Day Planner
-  </button>
-</div>
-    <div class="mt-10 flex gap-4">
-      <a href="index.html#planner" 
-         class="bg-indigo-600 text-white px-6 py-3 rounded-lg hover:bg-indigo-700 transition shadow-md">
-         Generate My Itinerary
+  <section class="py-16 container mx-auto px-6 max-w-5xl">
+    <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
+      <div>
+        <h2 class="text-3xl font-extrabold text-gray-900">Top Experiences in Uttarakhand</h2>
+        <p class="text-gray-600 mt-1">Immerse yourself in mountain serenity and yoga retreats.</p>
+      </div>
+      <a href="uttarakhand_places.html" class="inline-flex items-center gap-2 text-indigo-600 font-semibold hover:underline">
+        Explore City Guide (Rishikesh, Nainital, Mussoorie) →
       </a>
+    </div>
 
-      <a href="index.html" 
-         class="bg-gray-200 text-gray-800 px-6 py-3 rounded-lg hover:bg-gray-300 transition shadow-md">
-         ⬅ Back to Home
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+      <div class="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm">
+        <ul class="space-y-3 text-gray-700">
+          <li class="flex items-start gap-3">
+            <span class="text-emerald-600 text-lg">🪔</span>
+            <span>Experience the divine evening <strong>Ganga Aarti</strong> at Haridwar & Rishikesh.</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="text-emerald-600 text-lg">⛰️</span>
+            <span>Trek to <strong>Valley of Flowers</strong> or embark on the <strong>Kedarnath & Badrinath</strong> yatra.</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="text-emerald-600 text-lg">🚣</span>
+            <span>Go <strong>white-water river rafting</strong>, cliff jumping & bungee jumping in Rishikesh.</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm">
+        <ul class="space-y-3 text-gray-700">
+          <li class="flex items-start gap-3">
+            <span class="text-emerald-600 text-lg">⛵</span>
+            <span>Unwind with boating in the emerald waters of <strong>Naini Lake</strong> in Nainital.</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="text-emerald-600 text-lg">🌲</span>
+            <span>Walk through misty pine forests and Mall Road in <strong>Mussoorie</strong>.</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="text-emerald-600 text-lg">🍲</span>
+            <span>Sample organic Pahadi cuisine: <strong>Aloo Ke Gutke</strong>, <strong>Kafuli</strong> & <strong>Bal Mithai</strong>.</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Action Bar -->
+    <div class="bg-slate-900 text-white rounded-3xl p-8 mb-12 flex flex-col md:flex-row items-center justify-between gap-6">
+      <div>
+        <h3 class="text-2xl font-bold mb-2">Want a Personalized Uttarakhand Plan?</h3>
+        <p class="text-slate-300 text-sm">Let our AI craft a 3-Day or 7-Day itinerary for Rishikesh, Nainital, Mussoorie, or Kedarnath.</p>
+      </div>
+      <a href="index.html#planner" class="bg-indigo-600 text-white px-8 py-3.5 rounded-xl font-bold hover:bg-indigo-500 transition shadow-lg shadow-indigo-600/40 flex-shrink-0">
+        Generate AI Itinerary
+      </a>
+    </div>
+
+    <div class="flex gap-4">
+      <a href="index.html" class="bg-gray-100 text-gray-700 px-6 py-3.5 rounded-xl font-semibold hover:bg-gray-200 transition">
+        ← Back to Home
       </a>
     </div>
   </section>
 
   <!-- Footer -->
-  <footer class="bg-gray-900 text-white py-10 text-center">
-    <p>&copy; 2025 SkyBound Journey. All rights reserved.</p>
+  <footer class="bg-gray-900 text-gray-400 py-10 text-center text-sm mt-auto">
+    <p>&copy; 2026 SkyBound Journey. All rights reserved.</p>
   </footer>
 
 </body>

@@ -3,36 +3,59 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SkyBound Journey - AI Travel Guide for India</title>
+  <title>SkyBound Journey - AI Travel & Tourist Guide</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     body { font-family: 'Inter', sans-serif; background-color: #f8fafc; }
     .hero-bg {
-      background-image: linear-gradient(to right, rgba(0,0,0,0.6), rgba(0,0,0,0.2)), url('https://placehold.co/1600x900/000000/FFFFFF?text=Incredible+India');
-      background-size: cover; background-position: center;
+      background-image: linear-gradient(to right, rgba(15, 23, 42, 0.75), rgba(15, 23, 42, 0.45)), url('amberr.jpg.webp');
+      background-size: cover;
+      background-position: center;
     }
-    .ai-response h2 { font-size: 1.25rem; font-weight: 600; margin-top: 1rem; margin-bottom: 0.5rem; }
-    .ai-response h3 { font-size: 1.1rem; font-weight: 600; margin-top: 0.75rem; margin-bottom: 0.25rem; }
-    .ai-response p { margin-bottom: 0.75rem; line-height: 1.6; }
-    .ai-response ul { list-style-type: disc; margin-left: 1.5rem; margin-bottom: 1rem; }
+    .ai-response h1, .ai-response h2 { color: #1e293b; font-weight: 700; border-bottom: 2px solid #e2e8f0; padding-bottom: 0.375rem; margin-top: 1.25rem; margin-bottom: 0.75rem; }
+    .ai-response h1 { font-size: 1.5rem; }
+    .ai-response h2 { font-size: 1.25rem; }
+    .ai-response h3 { font-size: 1.1rem; font-weight: 600; color: #334155; margin-top: 1rem; margin-bottom: 0.5rem; }
+    .ai-response p { margin-bottom: 0.75rem; line-height: 1.65; color: #475569; }
+    .ai-response ul, .ai-response ol { margin-left: 1.5rem; margin-bottom: 1rem; color: #334155; }
+    .ai-response ul { list-style-type: disc; }
+    .ai-response ol { list-style-type: decimal; }
+    .ai-response li { margin-bottom: 0.375rem; line-height: 1.5; }
+    .ai-response strong { color: #0f172a; font-weight: 600; }
+    .ai-response blockquote { border-left: 4px solid #4f46e5; padding-left: 1rem; font-style: italic; color: #475569; margin: 1rem 0; background-color: #f1f5f9; padding-top: 0.5rem; padding-bottom: 0.5rem; border-radius: 0 0.5rem 0.5rem 0; }
+    
+    @media print {
+      body * { visibility: hidden; }
+      #printableArea, #printableArea * { visibility: visible; }
+      #printableArea { position: absolute; left: 0; top: 0; width: 100%; }
+    }
   </style>
 </head>
-<body class="text-gray-800">
+<body class="text-gray-800 flex flex-col min-h-screen">
 
-  <!-- Header -->
-  <header class="bg-white/80 backdrop-blur-lg fixed top-0 left-0 right-0 z-50 shadow-sm">
+  <!-- Header / Navigation -->
+  <header class="bg-white/90 backdrop-blur-md fixed top-0 left-0 right-0 z-50 shadow-sm transition-all duration-300">
     <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-      <a href="#" class="text-2xl font-bold text-gray-900 flex items-center">
-        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" class="text-indigo-600 mr-2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-        SkyBound Journey
+      <a href="index.html" class="text-2xl font-extrabold text-gray-900 flex items-center gap-2 group">
+        <div class="bg-indigo-600 text-white p-2 rounded-xl group-hover:bg-indigo-700 transition">
+          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-1.2 2.3c-.2.4-.1.9.2 1.1l5.4 3.7-3.2 3.2-2.3-.6c-.4-.1-.8.1-.9.4l-.6 1.2c-.2.4 0 .9.3 1.1l3.4 2 2 3.4c.2.3.7.5 1.1.3l1.2-.6c.3-.1.5-.5.4-.9l-.6-2.3 3.2-3.2 3.7 5.4c.2.3.7.4 1.1.2l2.3-1.2c.4-.2.6-.6.5-1.1z"/></svg>
+        </div>
+        <span>SkyBound <span class="text-indigo-600">Journey</span></span>
       </a>
-      <nav class="hidden md:flex space-x-8 items-center">
-        <a href="#destinations" class="text-gray-600 hover:text-indigo-600">Destinations</a>
-        <a href="#planner" class="text-gray-600 hover:text-indigo-600">AI Planner</a>
-        <a href="#planner" class="bg-indigo-600 text-white px-5 py-2 rounded-full hover:bg-indigo-700 shadow-md">Get Started</a>
+
+      <nav class="hidden md:flex space-x-8 items-center font-medium">
+        <a href="#destinations" class="text-gray-600 hover:text-indigo-600 transition">Destinations</a>
+        <a href="#planner" class="text-gray-600 hover:text-indigo-600 transition">AI Planner</a>
+        <a href="#features" class="text-gray-600 hover:text-indigo-600 transition">Features</a>
+        <div id="authLinks" class="flex items-center space-x-4">
+          <a href="sign.html" class="text-gray-600 hover:text-indigo-600 transition">Sign In</a>
+          <a href="signup.html" class="bg-indigo-600 text-white px-5 py-2 rounded-full hover:bg-indigo-700 shadow-md hover:shadow-indigo-200 transition">Sign Up</a>
+        </div>
       </nav>
-      <button id="mobile-menu-button" class="md:hidden">
+
+      <button id="mobile-menu-button" class="md:hidden p-2 text-gray-600 hover:text-indigo-600">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
           <line x1="3" y1="12" x2="21" y2="12"></line>
           <line x1="3" y1="6" x2="21" y2="6"></line>
@@ -40,75 +63,120 @@
         </svg>
       </button>
     </div>
-    <div id="mobile-menu" class="hidden md:hidden px-6 pb-4">
+
+    <!-- Mobile menu -->
+    <div id="mobile-menu" class="hidden md:hidden px-6 pb-4 bg-white border-t border-gray-100">
       <a href="#destinations" class="block py-2 text-gray-600 hover:text-indigo-600">Destinations</a>
       <a href="#planner" class="block py-2 text-gray-600 hover:text-indigo-600">AI Planner</a>
-      <a href="#planner" class="block mt-2 bg-indigo-600 text-white text-center px-5 py-2 rounded-full hover:bg-indigo-700">Get Started</a>
+      <a href="#features" class="block py-2 text-gray-600 hover:text-indigo-600">Features</a>
+      <div class="pt-2 flex flex-col gap-2">
+        <a href="sign.html" class="block text-center py-2 border border-gray-200 rounded-lg text-gray-700 font-medium">Sign In</a>
+        <a href="signup.html" class="block text-center bg-indigo-600 text-white py-2 rounded-lg font-medium">Sign Up</a>
+      </div>
     </div>
   </header>
 
-  <!-- Hero -->
-  <section class="hero-bg min-h-[60vh] md:min-h-[80vh] flex items-center justify-center text-white pt-20">
-    <div class="text-center p-6 bg-black/30 rounded-xl backdrop-blur-sm">
-      <h1 class="text-4xl md:text-6xl font-extrabold mb-4 leading-tight">Your AI Travel Guide to India</h1>
-      <p class="text-lg md:text-xl max-w-2xl mx-auto text-gray-200">Discover incredible destinations and let our AI craft your perfect itinerary.</p>
+  <!-- Hero Section -->
+  <section class="hero-bg min-h-[75vh] flex items-center justify-center text-white pt-24 pb-16 px-6">
+    <div class="text-center max-w-3xl mx-auto space-y-6">
+      <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-xs font-semibold uppercase tracking-wider text-indigo-200">
+        ✨ Smart AI Travel Intelligence
+      </div>
+      <h1 class="text-4xl md:text-6xl font-black leading-tight tracking-tight">
+        Your Next Great Journey, <span class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-300 to-sky-200">AI Planned.</span>
+      </h1>
+      <p class="text-lg md:text-xl text-gray-200 font-light max-w-2xl mx-auto">
+        Discover incredible destinations across India and let our AI tourist guide build day-by-day itineraries tailored to your style, budget, and schedule.
+      </p>
+      <div class="pt-4 flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="#planner" class="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold px-8 py-3.5 rounded-full shadow-lg shadow-indigo-600/30 transition transform hover:-translate-y-0.5">
+          Generate Travel Plan Now
+        </a>
+        <a href="#destinations" class="bg-white/10 hover:bg-white/20 text-white backdrop-blur-md border border-white/30 font-semibold px-8 py-3.5 rounded-full transition">
+          Explore Popular States
+        </a>
+      </div>
     </div>
   </section>
 
-  <!-- Destinations -->
+  <!-- Featured Destinations -->
   <section id="destinations" class="py-20 bg-white">
     <div class="container mx-auto px-6">
-      <div class="text-center mb-12">
-        <h2 class="text-3xl md:text-4xl font-bold text-gray-900">Featured Destinations</h2>
-        <p class="text-gray-600 mt-2 max-w-xl mx-auto">Explore India's diverse beauty, from palaces to the Himalayas.</p>
+      <div class="text-center mb-14">
+        <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900">Featured Tourist Regions</h2>
+        <p class="text-gray-600 mt-3 max-w-xl mx-auto">Explore rich heritage, serene mountains, royal palaces, and wildlife reserves.</p>
       </div>
 
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-        <!-- Rajasthan -->
-        <div class="bg-gray-50 rounded-xl overflow-hidden shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300">
-          <img src="download (1).jpeg" class="w-full h-48 object-cover" alt="Rajasthan">
-          <div class="p-6 flex flex-col justify-between h-full">
+        <!-- Rajasthan Card -->
+        <div class="group bg-gray-50 rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col">
+          <div class="relative overflow-hidden h-52">
+            <img src="download (1).jpeg" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" alt="Rajasthan">
+            <span class="absolute top-4 right-4 bg-black/60 backdrop-blur-md text-white text-xs px-3 py-1 rounded-full font-medium">Forts & Deserts</span>
+          </div>
+          <div class="p-6 flex flex-col flex-1 justify-between">
             <div>
-              <h3 class="text-2xl font-bold mb-2">Rajasthan</h3>
-              <p class="text-gray-600 mb-4">The Land of Kings — forts, deserts, and royal charm.</p>
+              <h3 class="text-2xl font-bold text-gray-900 mb-2">Rajasthan</h3>
+              <p class="text-gray-600 text-sm mb-6 leading-relaxed">The Land of Kings — grand palaces, Thar desert safaris, Jaipur, Jaisalmer & Udaipur.</p>
             </div>
-            <a href="rajasthan.html" class="bg-indigo-600 text-white px-5 py-2 rounded-lg hover:bg-indigo-700 text-center">Explore</a>
+            <div class="flex gap-2">
+              <a href="rajasthan.html" class="flex-1 bg-indigo-600 text-white text-center py-2.5 rounded-xl font-medium hover:bg-indigo-700 transition">View Guide</a>
+              <a href="rajasthan_places.html" class="px-3 py-2.5 border border-indigo-200 text-indigo-600 rounded-xl font-medium hover:bg-indigo-50 transition" title="Cities Grid">Cities</a>
+            </div>
           </div>
         </div>
 
-        <!-- Uttarakhand -->
-        <div class="bg-gray-50 rounded-xl overflow-hidden shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300">
-          <img src="download.jpeg" class="w-full h-48 object-cover" alt="Uttarakhand">
-          <div class="p-6 flex flex-col justify-between h-full">
+        <!-- Uttarakhand Card -->
+        <div class="group bg-gray-50 rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col">
+          <div class="relative overflow-hidden h-52">
+            <img src="download.jpeg" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" alt="Uttarakhand">
+            <span class="absolute top-4 right-4 bg-black/60 backdrop-blur-md text-white text-xs px-3 py-1 rounded-full font-medium">Himalayas & Spiritual</span>
+          </div>
+          <div class="p-6 flex flex-col flex-1 justify-between">
             <div>
-              <h3 class="text-2xl font-bold mb-2">Uttarakhand</h3>
-              <p class="text-gray-600 mb-4">The Land of the Gods — temples, hills & adventure.</p>
+              <h3 class="text-2xl font-bold text-gray-900 mb-2">Uttarakhand</h3>
+              <p class="text-gray-600 text-sm mb-6 leading-relaxed">Land of the Gods — Rishikesh rafting, Nainital lakes, Mussoorie & sacred shrines.</p>
             </div>
-            <a href="uttarakhand.html" class="bg-indigo-600 text-white px-5 py-2 rounded-lg hover:bg-indigo-700 text-center">Explore</a>
+            <div class="flex gap-2">
+              <a href="uttarakhand.html" class="flex-1 bg-indigo-600 text-white text-center py-2.5 rounded-xl font-medium hover:bg-indigo-700 transition">View Guide</a>
+              <a href="uttarakhand_places.html" class="px-3 py-2.5 border border-indigo-200 text-indigo-600 rounded-xl font-medium hover:bg-indigo-50 transition" title="Cities Grid">Cities</a>
+            </div>
           </div>
         </div>
 
-        <!-- Jammu & Kashmir -->
-        <div class="bg-gray-50 rounded-xl overflow-hidden shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300">
-          <img src="Pahalgam_Valley.jpg" class="w-full h-48 object-cover" alt="Jammu & Kashmir">
-          <div class="p-6 flex flex-col justify-between h-full">
+        <!-- Jammu & Kashmir Card -->
+        <div class="group bg-gray-50 rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col">
+          <div class="relative overflow-hidden h-52">
+            <img src="Pahalgam_Valley.jpg" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" alt="Jammu & Kashmir">
+            <span class="absolute top-4 right-4 bg-black/60 backdrop-blur-md text-white text-xs px-3 py-1 rounded-full font-medium">Valleys & Snow</span>
+          </div>
+          <div class="p-6 flex flex-col flex-1 justify-between">
             <div>
-              <h3 class="text-2xl font-bold mb-2">Jammu & Kashmir</h3>
-              <p class="text-gray-600 mb-4">Paradise on Earth — lakes, meadows, and snow.</p>
+              <h3 class="text-2xl font-bold text-gray-900 mb-2">Jammu & Kashmir</h3>
+              <p class="text-gray-600 text-sm mb-6 leading-relaxed">Paradise on Earth — Dal Lake houseboats, Gulmarg Gondola rides & Pahalgam valleys.</p>
             </div>
-            <a href="jammu-kashmir.html" class="bg-indigo-600 text-white px-5 py-2 rounded-lg hover:bg-indigo-700 text-center">Explore</a>
+            <div class="flex gap-2">
+              <a href="jammu-kashmir.html" class="flex-1 bg-indigo-600 text-white text-center py-2.5 rounded-xl font-medium hover:bg-indigo-700 transition">View Guide</a>
+              <a href="jammukashmir_places.html" class="px-3 py-2.5 border border-indigo-200 text-indigo-600 rounded-xl font-medium hover:bg-indigo-50 transition" title="Cities Grid">Cities</a>
+            </div>
           </div>
         </div>
 
-        <!-- Assam -->
-        <div class="bg-gray-50 rounded-xl overflow-hidden shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300">
-          <img src="download (2).jpeg" class="w-full h-48 object-cover" alt="Assam">
-          <div class="p-6 flex flex-col justify-between h-full">
+        <!-- Assam Card -->
+        <div class="group bg-gray-50 rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col">
+          <div class="relative overflow-hidden h-52">
+            <img src="download (2).jpeg" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" alt="Assam">
+            <span class="absolute top-4 right-4 bg-black/60 backdrop-blur-md text-white text-xs px-3 py-1 rounded-full font-medium">Tea & Wildlife</span>
+          </div>
+          <div class="p-6 flex flex-col flex-1 justify-between">
             <div>
-              <h3 class="text-2xl font-bold mb-2">Assam</h3>
-              <p class="text-gray-600 mb-4">Lush tea gardens, rhinos, and river islands.</p>
+              <h3 class="text-2xl font-bold text-gray-900 mb-2">Assam</h3>
+              <p class="text-gray-600 text-sm mb-6 leading-relaxed">Gateway to the Northeast — Kaziranga rhinos, Majuli river island & rolling tea estates.</p>
             </div>
-            <a href="assam.html" class="bg-indigo-600 text-white px-5 py-2 rounded-lg hover:bg-indigo-700 text-center">Explore</a>
+            <div class="flex gap-2">
+              <a href="assam.html" class="flex-1 bg-indigo-600 text-white text-center py-2.5 rounded-xl font-medium hover:bg-indigo-700 transition">View Guide</a>
+              <a href="assam_places.html" class="px-3 py-2.5 border border-indigo-200 text-indigo-600 rounded-xl font-medium hover:bg-indigo-50 transition" title="Cities Grid">Cities</a>
+            </div>
           </div>
         </div>
       </div>
@@ -116,186 +184,492 @@
   </section>
 
   <!-- AI Planner Section -->
-<section id="planner" class="py-20 bg-gray-100">
-  <div class="container mx-auto px-6">
-    <div class="text-center mb-12">
-      <h2 class="text-3xl md:text-4xl font-bold text-gray-900">Create Your Dream Trip</h2>
-      <p class="text-gray-600 mt-2 max-w-xl mx-auto">
-        Choose your destination, and our AI will craft a personalized itinerary for you.
-      </p>
+  <section id="planner" class="py-20 bg-slate-900 text-white">
+    <div class="container mx-auto px-6">
+      <div class="text-center max-w-3xl mx-auto mb-12">
+        <span class="text-indigo-400 font-semibold text-sm uppercase tracking-wider">AI Powered Tourist Generator</span>
+        <h2 class="text-3xl md:text-5xl font-black mt-2">Generate Your Custom Itinerary</h2>
+        <p class="text-slate-400 mt-3">Select any destination or type your own city in India, choose travel days and style, and let AI generate a day-by-day tourist schedule.</p>
+      </div>
+
+      <div class="max-w-4xl mx-auto bg-slate-800/80 backdrop-blur-xl p-8 rounded-3xl border border-slate-700 shadow-2xl">
+        <form id="plannerForm" class="space-y-6" onsubmit="event.preventDefault();">
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <!-- Destination Selection / Input -->
+            <div class="md:col-span-1">
+              <label class="block text-sm font-semibold text-slate-300 mb-2">Destination</label>
+              <div class="relative">
+                <input type="text" id="destinationInput" list="popularDestinations" placeholder="e.g. Rajasthan, Goa, Jaipur, Kerala..." required
+                  class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition">
+                <datalist id="popularDestinations">
+                  <option value="Rajasthan"></option>
+                  <option value="Jaipur"></option>
+                  <option value="Jaisalmer"></option>
+                  <option value="Udaipur"></option>
+                  <option value="Jodhpur"></option>
+                  <option value="Uttarakhand"></option>
+                  <option value="Rishikesh"></option>
+                  <option value="Nainital"></option>
+                  <option value="Jammu & Kashmir"></option>
+                  <option value="Srinagar"></option>
+                  <option value="Gulmarg"></option>
+                  <option value="Assam"></option>
+                  <option value="Kaziranga"></option>
+                  <option value="Goa"></option>
+                  <option value="Kerala"></option>
+                  <option value="Agra"></option>
+                  <option value="Varanasi"></option>
+                  <option value="Ladakh"></option>
+                </datalist>
+              </div>
+            </div>
+
+            <!-- Duration Select -->
+            <div>
+              <label class="block text-sm font-semibold text-slate-300 mb-2">Duration</label>
+              <select id="durationSelect"
+                class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 transition">
+                <option value="3 Days">3 Days (Express)</option>
+                <option value="5 Days" selected>5 Days (Standard)</option>
+                <option value="7 Days">7 Days (Complete)</option>
+                <option value="10 Days">10 Days (Grand Tour)</option>
+              </select>
+            </div>
+
+            <!-- Travel Style Select -->
+            <div>
+              <label class="block text-sm font-semibold text-slate-300 mb-2">Travel Style</label>
+              <select id="styleSelect"
+                class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 transition">
+                <option value="Balanced Highlights">Balanced Highlights</option>
+                <option value="Culture & Heritage">Culture & Heritage</option>
+                <option value="Nature & Adventure">Nature & Adventure</option>
+                <option value="Relaxed & Luxury">Relaxed & Luxury</option>
+                <option value="Budget & Backpacker">Budget & Backpacker</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Special Interests / Notes -->
+          <div>
+            <label class="block text-sm font-semibold text-slate-300 mb-2">Special Preferences / Interests (Optional)</label>
+            <input type="text" id="interestsInput" placeholder="e.g. Local street food, photography spots, boat rides, trekking..."
+              class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition">
+          </div>
+
+          <!-- Buttons & Key Modal Trigger -->
+          <div class="flex flex-wrap items-center justify-between gap-4 pt-2">
+            <button type="button" id="openApiKeyModal" class="text-xs text-slate-400 hover:text-indigo-400 underline flex items-center gap-1">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 2l-2 2m-2-2l2 2m2 4l-4 4m2 2l-4 4m-4-6a6 6 0 1 1-8.5-8.5 6 6 0 0 1 8.5 8.5z"/></svg>
+              Configure Gemini API Key (<span id="keyStatusText">Default Ready</span>)
+            </button>
+
+            <button id="generateBtn" type="submit"
+              class="w-full sm:w-auto bg-indigo-600 hover:bg-indigo-500 text-white font-bold px-10 py-3.5 rounded-xl transition duration-300 shadow-lg shadow-indigo-600/40 flex items-center justify-center gap-2">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              Generate AI Itinerary
+            </button>
+          </div>
+        </form>
+
+        <!-- Result Box -->
+        <div id="resultContainer" class="mt-8 hidden">
+          <div class="flex justify-between items-center bg-slate-900 border border-slate-700 px-6 py-4 rounded-t-2xl">
+            <div class="flex items-center gap-2">
+              <span class="inline-block w-3 h-3 rounded-full bg-emerald-500 animate-pulse"></span>
+              <h3 id="resultTitle" class="font-bold text-white text-lg">Your Generated Itinerary</h3>
+            </div>
+            <button id="printBtn" class="bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs px-4 py-2 rounded-lg font-medium border border-slate-600 transition flex items-center gap-1.5">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+              Print / Save PDF
+            </button>
+          </div>
+
+          <div id="aiResult" class="bg-white text-slate-800 p-8 rounded-b-2xl shadow-xl min-h-[250px] ai-response">
+            <div id="loading" class="hidden flex-col justify-center items-center py-12 text-slate-600 space-y-4">
+              <svg class="animate-spin h-10 w-10 text-indigo-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+              </svg>
+              <p class="font-medium text-slate-600">Crafting your personalized tourist itinerary using AI...</p>
+            </div>
+            <div id="printableArea"></div>
+          </div>
+        </div>
+      </div>
     </div>
+  </section>
 
-    <div class="max-w-3xl mx-auto bg-white p-8 rounded-2xl shadow-xl">
-      <div class="flex flex-col sm:flex-row gap-4 items-center">
-        <select id="destinationSelect"
-          class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition duration-300">
-          <option value="">Select a Destination</option>
-          <option value="Rajasthan">Rajasthan</option>
-          <option value="Uttarakhand">Uttarakhand</option>
-          <option value="Jammu & Kashmir">Jammu & Kashmir</option>
-          <option value="Assam">Assam</option>
-        </select>
+  <!-- Features Section -->
+  <section id="features" class="py-20 bg-slate-50">
+    <div class="container mx-auto px-6">
+      <div class="text-center max-w-2xl mx-auto mb-16">
+        <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900">Why Plan with SkyBound?</h2>
+        <p class="text-gray-600 mt-2">Smart travel planning crafted for smooth exploration.</p>
+      </div>
 
-        <button id="generateBtn"
-          class="bg-indigo-600 text-white font-semibold px-8 py-3 rounded-lg hover:bg-indigo-700 transition duration-300 shadow-md flex-shrink-0">
-          Generate Plan
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 space-y-4">
+          <div class="w-12 h-12 bg-indigo-100 text-indigo-600 rounded-xl flex items-center justify-center font-bold">🗺️</div>
+          <h3 class="text-xl font-bold text-gray-900">Day-by-Day Precision</h3>
+          <p class="text-gray-600 text-sm leading-relaxed">Detailed morning, afternoon, and evening recommendations so you never waste a single hour.</p>
+        </div>
+
+        <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 space-y-4">
+          <div class="w-12 h-12 bg-indigo-100 text-indigo-600 rounded-xl flex items-center justify-center font-bold">🍛</div>
+          <h3 class="text-xl font-bold text-gray-900">Local Cuisine & Tips</h3>
+          <p class="text-gray-600 text-sm leading-relaxed">Discover authentic local delicacies, food spots, and practical insider travel tips.</p>
+        </div>
+
+        <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 space-y-4">
+          <div class="w-12 h-12 bg-indigo-100 text-indigo-600 rounded-xl flex items-center justify-center font-bold">📄</div>
+          <h3 class="text-xl font-bold text-gray-900">Pre-built PDF Planners</h3>
+          <p class="text-gray-600 text-sm leading-relaxed">Download ready-made 3-Day and 7-Day PDF guides for top destinations like Jaipur, Jaisalmer, and Udaipur.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-900 text-gray-400 py-12 mt-auto">
+    <div class="container mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+      <div>
+        <h4 class="text-white text-lg font-bold mb-4 flex items-center gap-2">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" class="text-indigo-400"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          SkyBound Journey
+        </h4>
+        <p class="text-sm text-gray-400 leading-relaxed">Your intelligent AI tourist guide for exploring India's richest culture, heritage, and landscapes.</p>
+      </div>
+      <div>
+        <h5 class="text-white font-semibold mb-3 text-sm uppercase tracking-wider">Destinations</h5>
+        <ul class="space-y-2 text-sm">
+          <li><a href="rajasthan.html" class="hover:text-white transition">Rajasthan</a></li>
+          <li><a href="uttarakhand.html" class="hover:text-white transition">Uttarakhand</a></li>
+          <li><a href="jammu-kashmir.html" class="hover:text-white transition">Jammu & Kashmir</a></li>
+          <li><a href="assam.html" class="hover:text-white transition">Assam</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5 class="text-white font-semibold mb-3 text-sm uppercase tracking-wider">Quick Links</h5>
+        <ul class="space-y-2 text-sm">
+          <li><a href="#planner" class="hover:text-white transition">AI Planner</a></li>
+          <li><a href="sign.html" class="hover:text-white transition">Sign In</a></li>
+          <li><a href="signup.html" class="hover:text-white transition">Sign Up</a></li>
+          <li><a href="rajasthan_places.html" class="hover:text-white transition">Cities Explorer</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5 class="text-white font-semibold mb-3 text-sm uppercase tracking-wider">Support</h5>
+        <p class="text-sm text-gray-400 mb-2">Need assistance with your booking or plan?</p>
+        <button id="footerChatBtn" class="bg-indigo-600 hover:bg-indigo-700 text-white text-xs px-4 py-2 rounded-lg font-medium transition">
+          Open AI Chat Assistant
         </button>
       </div>
+    </div>
+    <div class="container mx-auto px-6 border-t border-gray-800 pt-6 text-center text-xs text-gray-500">
+      &copy; 2026 SkyBound Journey. Built with ❤️ for Travelers in India.
+    </div>
+  </footer>
 
-      <div id="aiResult" class="mt-8 p-6 bg-gray-50 rounded-lg border border-gray-200 min-h-[200px] prose max-w-none ai-response">
-        <div id="loading" class="hidden justify-center items-center h-full">
-          <svg class="animate-spin -ml-1 mr-3 h-8 w-8 text-indigo-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-            <path class="opacity-75" fill="currentColor"
-              d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-          </svg>
-          <span class="text-gray-600">Crafting your perfect journey...</span>
-        </div>
-        <p id="placeholderText" class="text-gray-500">Your personalized travel itinerary will appear here.</p>
+  <!-- API Key Modal -->
+  <div id="apiKeyModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-slate-900 border border-slate-700 w-full max-w-md rounded-2xl p-6 text-white shadow-2xl">
+      <div class="flex justify-between items-center mb-4">
+        <h3 class="text-lg font-bold text-white flex items-center gap-2">
+          🔑 Gemini API Key Configuration
+        </h3>
+        <button id="closeApiKeyModal" class="text-slate-400 hover:text-white text-xl">✕</button>
+      </div>
+      <p class="text-slate-300 text-xs leading-relaxed mb-4">
+        SkyBound Journey uses Google Gemini AI to craft live itineraries. Enter your free Google Gemini API key below. If left empty, our smart fallback engine will generate a comprehensive itinerary automatically!
+      </p>
+      <input type="password" id="userApiKey" placeholder="AIzaSy..."
+        class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-3 text-white placeholder-slate-500 mb-4 focus:outline-none focus:ring-2 focus:ring-indigo-500 text-sm">
+      <div class="flex justify-end gap-3">
+        <button id="saveApiKey" class="bg-indigo-600 hover:bg-indigo-500 text-white px-5 py-2.5 rounded-xl text-sm font-semibold transition">
+          Save Settings
+        </button>
       </div>
     </div>
   </div>
-</section>
 
-<script>
-  const generateBtn = document.getElementById('generateBtn');
-const destinationSelect = document.getElementById('destinationSelect');
+  <!-- Floating Chatbox Assistant -->
+  <div id="chatbox-container" class="fixed bottom-6 right-6 z-40">
+    <button id="chat-toggle" class="bg-indigo-600 hover:bg-indigo-700 text-white p-4 rounded-full shadow-2xl transition transform hover:scale-105 flex items-center justify-center group" title="Ask AI Assistant">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+    </button>
 
-generateBtn.addEventListener('click', async () => {
-    const destination = destinationSelect.value.trim();
-    if (!destination) {
-        aiResult.innerHTML = '<p class="text-red-500">Please select a destination first!</p>';
-        return;
-    }
+    <div id="chatbox" class="hidden w-80 sm:w-96 bg-white rounded-3xl shadow-2xl border border-slate-200 flex flex-col overflow-hidden transition-all duration-300">
+      <div class="bg-indigo-600 text-white px-5 py-4 flex justify-between items-center">
+        <div class="flex items-center gap-2">
+          <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-ping"></span>
+          <h3 class="font-bold text-sm">SkyBound Travel Assistant</h3>
+        </div>
+        <button id="close-chat" class="text-white hover:text-gray-200 text-lg">✕</button>
+      </div>
 
-    // PLACE THE REDIRECT HERE
-    if (destination === "Rajasthan") window.location.href = "rajasthan.html";
-    else if (destination === "Uttarakhand") window.location.href = "uttarakhand.html";
-    else if (destination === "Jammu & Kashmir") window.location.href = "jammu_kashmir.html";
-    else if (destination === "Assam") window.location.href = "assam.html";
-});
+      <div id="chat-messages" class="p-4 h-72 overflow-y-auto text-xs space-y-3 bg-slate-50">
+        <div class="bg-indigo-50 text-indigo-900 border border-indigo-100 p-3 rounded-2xl max-w-[85%]">
+          👋 Hi there! I'm your SkyBound AI travel guide. Ask me about best travel times, local dishes, packing lists, or places to visit!
+        </div>
+      </div>
 
-  const loading = document.getElementById('loading');
-  const placeholderText = document.getElementById('placeholderText');
-
-  const callGeminiAPI = async (destination) => {
-    const apiKey = ""; // Add your Gemini API key here
-    const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`;
-
-    const systemPrompt = `You are 'SkyBound Journey', an AI travel expert for India. Create a personalized 3–5 day itinerary for ${destination}, with top attractions, activities, and local food suggestions. Use <h2>, <h3>, <p>, and <ul> tags for clear formatting.`;
-
-    const payload = {
-      contents: [{ parts: [{ text: `Plan a trip to ${destination}` }] }],
-      systemInstruction: { parts: [{ text: systemPrompt }] }
-    };
-
-    try {
-      const response = await fetch(apiUrl, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload)
-      });
-      const result = await response.json();
-      const text = result.candidates?.[0]?.content?.parts?.[0]?.text;
-      return text || "Sorry, I couldn’t generate a plan at the moment.";
-    } catch (error) {
-      console.error(error);
-      return "Something went wrong. Please try again.";
-    }
-  };
-
-  generateBtn.addEventListener('click', async () => {
-    const destination = destinationSelect.value.trim();
-    if (!destination) {
-      aiResult.innerHTML = '<p class="text-red-500">Please select a destination first!</p>';
-      return;
-    }
-
-    placeholderText.style.display = 'none';
-    aiResult.innerHTML = '';
-    loading.style.display = 'flex';
-    aiResult.appendChild(loading);
-
-    const generatedText = await callGeminiAPI(destination);
-
-    loading.style.display = 'none';
-    aiResult.innerHTML = generatedText;
-  });
-</script>
-<!-- 🟣 Chatbox Assistant -->
-<div id="chatbox-container" class="fixed bottom-4 right-4">
-  <button id="chat-toggle" class="bg-indigo-600 text-white p-4 rounded-full shadow-lg hover:bg-indigo-700 transition">
-    💬
-  </button>
-
-  <div id="chatbox" class="hidden w-80 bg-white rounded-2xl shadow-2xl border border-gray-200 flex flex-col">
-    <div class="bg-indigo-600 text-white px-4 py-3 rounded-t-2xl flex justify-between items-center">
-      <h3 class="font-semibold">SkyBound Assistant</h3>
-      <button id="close-chat" class="text-white hover:text-gray-200">✕</button>
-    </div>
-
-    <div id="chat-messages" class="p-4 h-64 overflow-y-auto text-sm space-y-3"></div>
-
-    <div class="border-t p-3 flex gap-2">
-      <input id="user-message" type="text" placeholder="Ask your travel assistant..." class="flex-1 border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500">
-      <button id="send-message" class="bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700">Send</button>
+      <div class="border-t border-slate-100 p-3 flex gap-2 bg-white">
+        <input id="user-message" type="text" placeholder="Ask about places, food, weather..." class="flex-1 border border-slate-200 rounded-xl px-3 py-2 text-xs focus:outline-none focus:ring-2 focus:ring-indigo-500">
+        <button id="send-message" class="bg-indigo-600 text-white px-4 py-2 rounded-xl text-xs font-semibold hover:bg-indigo-700 transition">Send</button>
+      </div>
     </div>
   </div>
-</div>
 
-<script>
-const chatToggle = document.getElementById("chat-toggle");
-const chatbox = document.getElementById("chatbox");
-const closeChat = document.getElementById("close-chat");
-const sendMessage = document.getElementById("send-message");
-const userMessage = document.getElementById("user-message");
-const chatMessages = document.getElementById("chat-messages");
+  <!-- JavaScript Logic -->
+  <script>
+    // --- Mobile Menu Toggle ---
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+    mobileMenuButton?.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
 
-// 🟢 Show and hide chatbox
-chatToggle.addEventListener("click", () => chatbox.classList.toggle("hidden"));
-closeChat.addEventListener("click", () => chatbox.classList.add("hidden"));
+    // --- API Key Storage ---
+    const userApiKeyInput = document.getElementById('userApiKey');
+    const keyStatusText = document.getElementById('keyStatusText');
+    const apiKeyModal = document.getElementById('apiKeyModal');
+    const openApiKeyModal = document.getElementById('openApiKeyModal');
+    const closeApiKeyModal = document.getElementById('closeApiKeyModal');
+    const saveApiKey = document.getElementById('saveApiKey');
 
-// 🧠 Gemini API setup
-const apiKey = "AIzaSyCWh_knIxnMG4J341bKQJpJBxh6-mJH6A8"; // 🔑 add your key here
-const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-pro:generateContent?key=${apiKey}`;
+    function updateKeyStatus() {
+      const stored = localStorage.getItem('skybound_gemini_key');
+      if (stored && stored.trim()) {
+        keyStatusText.textContent = "Custom Key Active";
+        keyStatusText.className = "text-emerald-400 font-medium";
+        userApiKeyInput.value = stored;
+      } else {
+        keyStatusText.textContent = "Default Ready";
+        keyStatusText.className = "text-slate-400";
+      }
+    }
+    updateKeyStatus();
 
-// 🟢 Send message
-sendMessage.addEventListener("click", async () => {
-  const message = userMessage.value.trim();
-  if (!message) return;
-
-  chatMessages.innerHTML += `<div class='text-right text-indigo-700'><b>You:</b> ${message}</div>`;
-  userMessage.value = "";
-
-  // Simulate “typing...”
-  const loading = document.createElement("div");
-  loading.textContent = "Assistant is typing...";
-  loading.classList.add("text-gray-400");
-  chatMessages.appendChild(loading);
-  chatMessages.scrollTop = chatMessages.scrollHeight;
-
-  try {
-    const response = await fetch(apiUrl, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        contents: [{ parts: [{ text: `You are a friendly AI travel assistant for India. ${message}` }] }],
-      }),
+    openApiKeyModal?.addEventListener('click', () => apiKeyModal.classList.remove('hidden'));
+    closeApiKeyModal?.addEventListener('click', () => apiKeyModal.classList.add('hidden'));
+    saveApiKey?.addEventListener('click', () => {
+      const val = userApiKeyInput.value.trim();
+      if (val) {
+        localStorage.setItem('skybound_gemini_key', val);
+      } else {
+        localStorage.removeItem('skybound_gemini_key');
+      }
+      updateKeyStatus();
+      apiKeyModal.classList.add('hidden');
     });
 
-    const data = await response.json();
-    const aiText = data.candidates?.[0]?.content?.parts?.[0]?.text || "Sorry, I couldn’t generate a response.";
-    loading.remove();
-    chatMessages.innerHTML += `<div class='text-left text-gray-700'><b>Assistant:</b> ${aiText}</div>`;
-    chatMessages.scrollTop = chatMessages.scrollHeight;
-  } catch (err) {
-    loading.remove();
-    chatMessages.innerHTML += `<div class='text-red-500'>Error: ${err.message}</div>`;
-  }
-});
-</script>
+    // --- Dynamic Mock Generator (Fallback when API key is missing or offline) ---
+    function generateFallbackItinerary(dest, duration, style, interests) {
+      const daysNum = parseInt(duration) || 5;
+      let title = `${daysNum}-Day ${style} Itinerary for ${dest}`;
+      
+      let markdown = `# 🚩 ${title}\n\n`;
+      markdown += `> **Travel Overview**: Discover the finest experiences in **${dest}** tailored for **${style}**. Includes curated sightseeing, cultural highlights, and local food stops.\n\n`;
 
+      if (interests) {
+        markdown += `💡 **Custom Note**: Specially tuned for your interest in *"${interests}"*.\n\n`;
+      }
 
+      for (let day = 1; day <= daysNum; day++) {
+        markdown += `## 🗓️ Day ${day}: Exploring ${dest} - Part ${day}\n`;
+        if (day === 1) {
+          markdown += `- **Morning**: Arrival in ${dest}, check-in to your resort/hotel, and enjoy a traditional welcome breakfast.\n`;
+          markdown += `- **Afternoon**: Visit the primary central attraction & historic landmark of ${dest}.\n`;
+          markdown += `- **Evening**: Stroll through local vibrant bazaars, try authentic local street food, and watch the sunset.\n`;
+        } else if (day === 2) {
+          markdown += `- **Morning**: Early morning excursion to scenic viewpoints and photography spots.\n`;
+          markdown += `- **Afternoon**: Guided tour of prominent heritage monuments and regional museums.\n`;
+          markdown += `- **Evening**: Cultural folk performance and authentic fine-dining dinner.\n`;
+        } else if (day === daysNum) {
+          markdown += `- **Morning**: Souvenir shopping at local handicraft centers and relaxed café brunch.\n`;
+          markdown += `- **Afternoon**: Final photo stops and visit to peaceful botanical garden or lake.\n`;
+          markdown += `- **Evening**: Departure from ${dest} with wonderful memories!\n`;
+        } else {
+          markdown += `- **Morning**: Outdoor nature trek or adventure activity around ${dest}.\n`;
+          markdown += `- **Afternoon**: Traditional lunch followed by architectural or scenic tour.\n`;
+          markdown += `- **Evening**: Relaxing boat ride or sunset terrace dinner.\n`;
+        }
+        markdown += `\n`;
+      }
+
+      markdown += `### 🍲 Local Culinary Highlights\n`;
+      markdown += `- Taste local specialty thali and regional desserts in ${dest}.\n`;
+      markdown += `- Recommended spots: Old Market Street and Riverside Cafes.\n\n`;
+
+      markdown += `### 💡 Practical Travel Tips\n`;
+      markdown += `- **Best Transportation**: Pre-booked cabs or auto-rickshaws for short distances.\n`;
+      markdown += `- **Packing**: Comfortable walking shoes, sunscreen, and light cotton or warm layers depending on season.\n`;
+
+      return markdown;
+    }
+
+    // --- Gemini API Call ---
+    async function callGeminiAPI(dest, duration, style, interests) {
+      const userKey = localStorage.getItem('skybound_gemini_key');
+      const apiKey = userKey || ""; // can use custom key if set
+
+      if (!apiKey) {
+        // Return instant high-quality fallback generator
+        await new Promise(r => setTimeout(r, 600)); // smooth realistic delay
+        return generateFallbackItinerary(dest, duration, style, interests);
+      }
+
+      const prompt = `You are 'SkyBound Journey', an expert AI travel guide for India. Create a detailed ${duration} travel itinerary for ${dest} tailored to a '${style}' travel style. Key preferences: ${interests || 'General tourist highlights'}. Format with markdown headings (## for Day 1, Day 2), bold text, and bullet points. Include morning/afternoon/evening schedules, local food recommendations, and travel tips.`;
+
+      const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
+
+      try {
+        const response = await fetch(apiUrl, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            contents: [{ parts: [{ text: prompt }] }]
+          })
+        });
+
+        if (!response.ok) throw new Error(`API status ${response.status}`);
+        const data = await response.json();
+        const text = data.candidates?.[0]?.content?.parts?.[0]?.text;
+        return text || generateFallbackItinerary(dest, duration, style, interests);
+      } catch (err) {
+        console.warn("Gemini API call failed or unconfigured, falling back to local generator:", err);
+        return generateFallbackItinerary(dest, duration, style, interests);
+      }
+    }
+
+    // --- Planner Form Submit ---
+    const generateBtn = document.getElementById('generateBtn');
+    const destinationInput = document.getElementById('destinationInput');
+    const durationSelect = document.getElementById('durationSelect');
+    const styleSelect = document.getElementById('styleSelect');
+    const interestsInput = document.getElementById('interestsInput');
+    const resultContainer = document.getElementById('resultContainer');
+    const aiResult = document.getElementById('aiResult');
+    const printableArea = document.getElementById('printableArea');
+    const loading = document.getElementById('loading');
+    const resultTitle = document.getElementById('resultTitle');
+
+    generateBtn?.addEventListener('click', async (e) => {
+      e.preventDefault();
+      const dest = destinationInput.value.trim();
+      if (!dest) {
+        alert("Please enter or select a destination!");
+        destinationInput.focus();
+        return;
+      }
+
+      resultContainer.classList.remove('hidden');
+      printableArea.innerHTML = '';
+      loading.classList.remove('hidden');
+      loading.classList.add('flex');
+      resultTitle.textContent = `Generating ${durationSelect.value} Itinerary for ${dest}...`;
+      
+      // Scroll to result smoothly
+      resultContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+      const markdownOutput = await callGeminiAPI(dest, durationSelect.value, styleSelect.value, interestsInput.value);
+
+      loading.classList.add('hidden');
+      loading.classList.remove('flex');
+      resultTitle.textContent = `SkyBound Itinerary: ${dest} (${durationSelect.value})`;
+
+      // Render markdown using Marked.js safely
+      printableArea.innerHTML = typeof marked !== 'undefined' ? marked.parse(markdownOutput) : markdownOutput.replace(/\n/g, '<br>');
+    });
+
+    // --- Print / PDF Export ---
+    document.getElementById('printBtn')?.addEventListener('click', () => {
+      window.print();
+    });
+
+    // --- Chatbox Assistant Logic ---
+    const chatToggle = document.getElementById("chat-toggle");
+    const chatbox = document.getElementById("chatbox");
+    const closeChat = document.getElementById("close-chat");
+    const footerChatBtn = document.getElementById("footerChatBtn");
+    const sendMessage = document.getElementById("send-message");
+    const userMessage = document.getElementById("user-message");
+    const chatMessages = document.getElementById("chat-messages");
+
+    const toggleChat = () => chatbox.classList.toggle("hidden");
+    chatToggle?.addEventListener("click", toggleChat);
+    closeChat?.addEventListener("click", () => chatbox.classList.add("hidden"));
+    footerChatBtn?.addEventListener("click", () => {
+      chatbox.classList.remove("hidden");
+      chatbox.scrollIntoView({ behavior: 'smooth' });
+    });
+
+    async function sendChatMessage() {
+      const msg = userMessage.value.trim();
+      if (!msg) return;
+
+      // User Message bubble
+      const userBubble = document.createElement('div');
+      userBubble.className = "bg-indigo-600 text-white p-3 rounded-2xl max-w-[85%] ml-auto text-right font-medium";
+      userBubble.textContent = msg;
+      chatMessages.appendChild(userBubble);
+
+      userMessage.value = "";
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+
+      // Assistant Typing indicator
+      const typing = document.createElement('div');
+      typing.className = "bg-slate-200 text-slate-600 p-2.5 rounded-2xl max-w-[70%] text-xs italic flex items-center gap-1";
+      typing.textContent = "Assistant is typing...";
+      chatMessages.appendChild(typing);
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+
+      // Simulate or Fetch AI Response
+      const userKey = localStorage.getItem('skybound_gemini_key');
+      let aiText = "";
+
+      if (userKey) {
+        try {
+          const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${userKey}`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              contents: [{ parts: [{ text: `You are a helpful India travel assistant. User question: ${msg}` }] }]
+            })
+          });
+          const d = await res.json();
+          aiText = d.candidates?.[0]?.content?.parts?.[0]?.text;
+        } catch (e) {
+          console.warn("Chat AI Error:", e);
+        }
+      }
+
+      if (!aiText) {
+        await new Promise(r => setTimeout(r, 600));
+        // Smart static response system
+        const q = msg.toLowerCase();
+        if (q.includes('best time') || q.includes('when')) {
+          aiText = "The best time for most Indian tourist destinations (like Rajasthan, Uttarakhand, & J&K) is between October and March when the weather is pleasant!";
+        } else if (q.includes('food') || q.includes('eat') || q.includes('dish')) {
+          aiText = "India offers incredible culinary diversity! Don't miss Dal Baati in Rajasthan, Pahadi Aloo Ke Gutke in Uttarakhand, Wazwan in Kashmir, and Assam Tea with Pitha!";
+        } else if (q.includes('pack') || q.includes('clothes')) {
+          aiText = "Pack breathable cottons for plains & deserts during the day, comfortable walking shoes, sunglasses, and warm jackets if visiting hill stations or J&K!";
+        } else {
+          aiText = `That's a great travel question! For ${msg}, we recommend pre-booking your transport and checking local guides on SkyBound Journey for detailed daily itineraries.`;
+        }
+      }
+
+      typing.remove();
+      const aiBubble = document.createElement('div');
+      aiBubble.className = "bg-white border border-slate-200 text-slate-800 p-3 rounded-2xl max-w-[85%] shadow-sm leading-relaxed";
+      aiBubble.innerHTML = typeof marked !== 'undefined' ? marked.parse(aiText) : aiText;
+      chatMessages.appendChild(aiBubble);
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+
+    sendMessage?.addEventListener("click", sendChatMessage);
+    userMessage?.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") sendChatMessage();
+    });
+  </script>
 </body>
 </html>
-

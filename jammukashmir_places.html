@@ -3,66 +3,84 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Jammu & Kashmir Cities | SkyBound Journey</title>
+  <title>J&K Destinations | SkyBound Journey</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-  <style>body { font-family:'Inter', sans-serif; background-color:#f8fafc; }</style>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>body { font-family: 'Inter', sans-serif; background-color: #f8fafc; }</style>
 </head>
+<body class="text-gray-800 flex flex-col min-h-screen">
 
-<body class="text-gray-800">
+  <header class="bg-white/90 backdrop-blur-md fixed top-0 left-0 right-0 z-50 shadow-sm">
+    <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+      <a href="index.html" class="text-2xl font-extrabold text-gray-900 flex items-center gap-2">
+        <div class="bg-indigo-600 text-white p-2 rounded-xl">
+          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <span>SkyBound <span class="text-indigo-600">Journey</span></span>
+      </a>
 
-<header class="bg-white/80 backdrop-blur-lg fixed top-0 left-0 right-0 z-50 shadow-sm">
-  <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-    <a href="index.html" class="text-2xl font-bold flex items-center text-gray-900">
-      <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="none"
-        stroke="currentColor" stroke-width="2" class="text-indigo-600 mr-2">
-        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-      </svg>
-      SkyBound Journey
-    </a>
+      <a href="jammu-kashmir.html" class="bg-gray-100 text-gray-700 px-4 py-2 rounded-full font-medium hover:bg-gray-200 transition text-sm">
+        ← Back to J&K Guide
+      </a>
+    </div>
+  </header>
 
-    <a href="index.html"
-      class="bg-gray-200 text-gray-800 px-4 py-2 rounded-full hover:bg-gray-300 transition">Back to Home</a>
-  </div>
-</header>
+  <section class="h-[55vh] bg-cover bg-center flex items-center justify-center text-white relative pt-20"
+    style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('Houseboats,_Dal_Lake,_Kashmir.jpg');">
+    <div class="text-center max-w-3xl px-6">
+      <h1 class="text-4xl md:text-5xl font-black mb-3">Jammu & Kashmir Destinations</h1>
+      <p class="text-lg text-gray-200 font-light">Explore Srinagar, Gulmarg, Pahalgam, and Sonmarg.</p>
+    </div>
+  </section>
 
-<section class="h-[65vh] bg-cover bg-center flex items-center justify-center text-white"
-  style="background-image:url('Houseboats\,_Dal_Lake\,_Kashmir.jpg');">
-  <div class="bg-black/40 p-6 rounded-xl text-center mt-20">
-    <h1 class="text-5xl font-extrabold mb-3">Explore Jammu & Kashmir</h1>
-    <p class="text-lg text-gray-200 max-w-xl">Choose your dream Himalayan getaway.</p>
-  </div>
-</section>
+  <section class="py-16 container mx-auto px-6 max-w-6xl">
+    <h2 class="text-3xl font-extrabold text-gray-900 mb-8 text-center">Top Destinations in Kashmir</h2>
 
-<section class="py-16 container mx-auto px-6">
-  <h2 class="text-3xl font-bold text-gray-900 mb-8 text-center">Choose a Place</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div class="bg-white rounded-3xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
+        <div>
+          <img src="Houseboats,_Dal_Lake,_Kashmir.jpg" class="w-full h-48 object-cover" alt="Srinagar">
+          <div class="p-6">
+            <h3 class="text-2xl font-bold text-gray-900 mb-2">Srinagar</h3>
+            <p class="text-gray-600 text-sm mb-4">Shikara rides on Dal Lake, wooden houseboats & Mughal Gardens.</p>
+          </div>
+        </div>
+        <div class="p-6 pt-0">
+          <a href="index.html#planner" class="block w-full bg-indigo-600 text-white text-center py-2.5 rounded-xl font-medium hover:bg-indigo-700 transition">✨ Generate Srinagar Itinerary</a>
+        </div>
+      </div>
 
-  <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div class="bg-white rounded-3xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
+        <div>
+          <img src="gulmarg_brown_chinar_kashmir.jpg.webp" class="w-full h-48 object-cover" alt="Gulmarg">
+          <div class="p-6">
+            <h3 class="text-2xl font-bold text-gray-900 mb-2">Gulmarg</h3>
+            <p class="text-gray-600 text-sm mb-4">Meadow of Flowers — high-altitude Gondola rides & winter skiing slopes.</p>
+          </div>
+        </div>
+        <div class="p-6 pt-0">
+          <a href="index.html#planner" class="block w-full bg-indigo-600 text-white text-center py-2.5 rounded-xl font-medium hover:bg-indigo-700 transition">✨ Generate Gulmarg Itinerary</a>
+        </div>
+      </div>
 
-    <a href="#" class="p-8 bg-white rounded-2xl shadow-lg hover:scale-105 transition text-center">
-      <img src="download (5).jpeg" class="rounded-xl mb-4 w-full h-48 object-cover">
-      <h3 class="text-2xl font-bold">Srinagar</h3>
-      <p class="text-gray-600">Dal Lake, houseboats & Mughal gardens.</p>
-    </a>
+      <div class="bg-white rounded-3xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
+        <div>
+          <img src="Pahalgam_Valley.jpg" class="w-full h-48 object-cover" alt="Pahalgam">
+          <div class="p-6">
+            <h3 class="text-2xl font-bold text-gray-900 mb-2">Pahalgam</h3>
+            <p class="text-gray-600 text-sm mb-4">Valley of Shepherds — pine forests, Betaab Valley & Lidder River.</p>
+          </div>
+        </div>
+        <div class="p-6 pt-0">
+          <a href="index.html#planner" class="block w-full bg-indigo-600 text-white text-center py-2.5 rounded-xl font-medium hover:bg-indigo-700 transition">✨ Generate Pahalgam Itinerary</a>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <a href="#" class="p-8 bg-white rounded-2xl shadow-lg hover:scale-105 transition text-center">
-      <img src="download (4).jpeg" class="rounded-xl mb-4 w-full h-48 object-cover">
-      <h3 class="text-2xl font-bold">Gulmarg</h3>
-      <p class="text-gray-600">Skiing, Gondola rides & snow paradise.</p>
-    </a>
-
-    <a href="#" class="p-8 bg-white rounded-2xl shadow-lg hover:scale-105 transition text-center">
-      <img src="Pahalgam_Valley.jpg" class="rounded-xl mb-4 w-full h-48 object-cover">
-      <h3 class="text-2xl font-bold">Pahalgam</h3>
-      <p class="text-gray-600">Valleys, rivers & serene views.</p>
-    </a>
-
-  </div>
-</section>
-
-<footer class="bg-gray-900 text-white py-10 text-center">
-  <p>&copy; 2025 SkyBound Journey. All rights reserved.</p>
-</footer>
+  <footer class="bg-gray-900 text-gray-400 py-10 text-center text-sm mt-auto">
+    <p>&copy; 2026 SkyBound Journey. All rights reserved.</p>
+  </footer>
 
 </body>
 </html>

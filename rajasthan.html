@@ -5,84 +5,150 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Rajasthan | SkyBound Journey</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
-    body {
-      font-family: 'Inter', sans-serif;
-      background-color: #f8fafc;
-    }
+    body { font-family: 'Inter', sans-serif; background-color: #f8fafc; }
   </style>
 </head>
-<body class="text-gray-800">
+<body class="text-gray-800 flex flex-col min-h-screen">
 
   <!-- Header -->
-  <header class="bg-white/80 backdrop-blur-lg fixed top-0 left-0 right-0 z-50 shadow-sm">
+  <header class="bg-white/90 backdrop-blur-md fixed top-0 left-0 right-0 z-50 shadow-sm">
     <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-      <a href="index.html" class="text-2xl font-bold text-gray-900 flex items-center">
-        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" class="text-indigo-600 mr-2">
-          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-        </svg>
-        SkyBound Journey
+      <a href="index.html" class="text-2xl font-extrabold text-gray-900 flex items-center gap-2">
+        <div class="bg-indigo-600 text-white p-2 rounded-xl">
+          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <span>SkyBound <span class="text-indigo-600">Journey</span></span>
       </a>
 
-      <nav>
-        <a href="index.html#planner" class="bg-indigo-600 text-white px-4 py-2 rounded-full hover:bg-indigo-700 transition">Plan Trip</a>
+      <nav class="hidden md:flex space-x-6 items-center font-medium">
+        <a href="index.html" class="text-gray-600 hover:text-indigo-600 transition">Home</a>
+        <a href="rajasthan_places.html" class="text-gray-600 hover:text-indigo-600 transition">Explore Cities</a>
+        <a href="index.html#planner" class="bg-indigo-600 text-white px-5 py-2 rounded-full hover:bg-indigo-700 transition shadow-md">AI Planner</a>
       </nav>
     </div>
   </header>
 
   <!-- Hero Section -->
-  <section class="h-[70vh] bg-cover bg-center flex items-center justify-center text-white"
-    style="background-image:url('amberr.jpg.webp');">
-      
-    <div class="bg-black/40 p-6 rounded-xl text-center mt-20">
-      <h1 class="text-5xl font-extrabold mb-3">Rajasthan</h1>
-      <p class="text-lg text-gray-200 max-w-2xl">
-        The Land of Kings — royal heritage, mighty forts, golden deserts & vibrant culture.
+  <section class="h-[65vh] bg-cover bg-center flex items-center justify-center text-white relative pt-20"
+    style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('amberr.jpg.webp');">
+    <div class="text-center max-w-3xl px-6">
+      <span class="bg-amber-500/80 text-white text-xs font-bold uppercase tracking-wider px-4 py-1.5 rounded-full">Royal Heritage State</span>
+      <h1 class="text-5xl md:text-6xl font-black mt-4 mb-3">Rajasthan</h1>
+      <p class="text-lg md:text-xl text-gray-200 font-light">
+        The Land of Kings — mighty forts, royal palaces, Thar desert safaris & vibrant culture.
       </p>
     </div>
   </section>
 
   <!-- Main Content -->
-  <section class="py-16 container mx-auto px-6">
-    <h2 class="text-3xl font-bold text-gray-900 mb-6">Top Experiences in Rajasthan</h2>
+  <section class="py-16 container mx-auto px-6 max-w-5xl">
+    <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
+      <div>
+        <h2 class="text-3xl font-extrabold text-gray-900">Top Experiences in Rajasthan</h2>
+        <p class="text-gray-600 mt-1">Immerse yourself in royal architecture and golden desert dunes.</p>
+      </div>
+      <a href="rajasthan_places.html" class="inline-flex items-center gap-2 text-indigo-600 font-semibold hover:underline">
+        Explore City Guide (Jaipur, Jaisalmer, Jodhpur) →
+      </a>
+    </div>
 
-    <ul class="list-disc pl-6 text-gray-700 space-y-3">
-      <li>Explore <strong>Amber Fort</strong>, <strong>Hawa Mahal</strong>, and <strong>City Palace</strong> in Jaipur.</li>
-      <li>Ride camels and watch sunsets in the <strong>Thar Desert</strong> of Jaisalmer.</li>
-      <li>Enjoy romantic boat rides on <strong>Lake Pichola</strong> in Udaipur.</li>
-      <li>Experience the energy of the <strong>Pushkar Camel Fair</strong>.</li>
-      <li>Try traditional dishes like <strong>Dal Baati Churma</strong> & <strong>Gatte ki Sabzi</strong>.</li>
-    </ul>
-    <div class="mt-6 flex gap-4 flex-wrap">
-  <button id="plan3Days" class="bg-indigo-600 text-white px-6 py-3 rounded-lg hover:bg-indigo-700 transition shadow-md">
-   <a href = "Jaisalmer_3-Day_Trip_Planner.pdf"> 3-Day Planner </a>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+      <div class="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm">
+        <ul class="space-y-3 text-gray-700">
+          <li class="flex items-start gap-3">
+            <span class="text-amber-500 text-lg">🏰</span>
+            <span>Explore <strong>Amber Fort</strong>, <strong>Hawa Mahal</strong>, and <strong>City Palace</strong> in Jaipur.</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="text-amber-500 text-lg">🐪</span>
+            <span>Ride camels and experience desert camping in the <strong>Thar Desert</strong> of Jaisalmer.</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="text-amber-500 text-lg">⛵</span>
+            <span>Enjoy romantic boat rides on <strong>Lake Pichola</strong> in Udaipur.</span>
+          </li>
+        </ul>
+      </div>
 
-  </button>
+      <div class="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm">
+        <ul class="space-y-3 text-gray-700">
+          <li class="flex items-start gap-3">
+            <span class="text-amber-500 text-lg">🎺</span>
+            <span>Discover the blue lanes and <strong>Mehrangarh Fort</strong> in Jodhpur.</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="text-amber-500 text-lg">🍲</span>
+            <span>Savor traditional dishes like <strong>Dal Baati Churma</strong>, <strong>Laal Maas</strong> & <strong>Gatte ki Sabzi</strong>.</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="text-amber-500 text-lg">🛍️</span>
+            <span>Shop for handcrafted bandhani textiles, block-print fabrics, and leather goods.</span>
+          </li>
+        </ul>
+      </div>
+    </div>
 
-  <button id="plan7Days" class="bg-indigo-600 text-white px-6 py-3 rounded-lg hover:bg-indigo-700 transition shadow-md">
-   <a href = "Jaisalmer_7-Day_Trip_Planner.pdf"> 7-Day Planner </a>
-  </button>
-</div>
+    <!-- Downloadable PDF Planners -->
+    <div class="bg-indigo-50 border border-indigo-100 rounded-3xl p-8 mb-12">
+      <h3 class="text-2xl font-bold text-gray-900 mb-2">📥 Download PDF Trip Planners</h3>
+      <p class="text-gray-600 text-sm mb-6">Download ready-to-print PDF itineraries for your favorite Rajasthan destinations:</p>
+      
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+        <!-- Jaipur -->
+        <div class="bg-white p-4 rounded-xl border border-indigo-100 shadow-sm flex flex-col justify-between">
+          <h4 class="font-bold text-gray-900 mb-3">Jaipur Guide</h4>
+          <div class="space-y-2">
+            <a href="Jaipur_7-Day_Trip_Planner.pdf" target="_blank" class="block text-center bg-indigo-600 text-white text-xs font-semibold py-2 rounded-lg hover:bg-indigo-700 transition">📄 7-Day PDF Plan</a>
+          </div>
+        </div>
 
+        <!-- Jaisalmer -->
+        <div class="bg-white p-4 rounded-xl border border-indigo-100 shadow-sm flex flex-col justify-between">
+          <h4 class="font-bold text-gray-900 mb-3">Jaisalmer Guide</h4>
+          <div class="space-y-2">
+            <a href="Jaisalmer_3-Day_Trip_Planner.pdf" target="_blank" class="block text-center bg-indigo-600 text-white text-xs font-semibold py-2 rounded-lg hover:bg-indigo-700 transition">📄 3-Day PDF Plan</a>
+            <a href="Jaisalmer_7-Day_Trip_Planner.pdf" target="_blank" class="block text-center border border-indigo-600 text-indigo-600 text-xs font-semibold py-2 rounded-lg hover:bg-indigo-50 transition">📄 7-Day PDF Plan</a>
+          </div>
+        </div>
 
-    <div class="mt-10 flex gap-4">
-      <a href="index.html#planner" 
-         class="bg-indigo-600 text-white px-6 py-3 rounded-lg hover:bg-indigo-700 transition shadow-md">
-         Generate My Itinerary
+        <!-- Jodhpur -->
+        <div class="bg-white p-4 rounded-xl border border-indigo-100 shadow-sm flex flex-col justify-between">
+          <h4 class="font-bold text-gray-900 mb-3">Jodhpur Guide</h4>
+          <div class="space-y-2">
+            <a href="Jodhpur_3-Day_Trip_Planner.pdf" target="_blank" class="block text-center bg-indigo-600 text-white text-xs font-semibold py-2 rounded-lg hover:bg-indigo-700 transition">📄 3-Day PDF Plan</a>
+            <a href="Jodhpur_7-Day_Trip_Planner.pdf" target="_blank" class="block text-center border border-indigo-600 text-indigo-600 text-xs font-semibold py-2 rounded-lg hover:bg-indigo-50 transition">📄 7-Day PDF Plan</a>
+          </div>
+        </div>
+
+        <!-- Udaipur -->
+        <div class="bg-white p-4 rounded-xl border border-indigo-100 shadow-sm flex flex-col justify-between">
+          <h4 class="font-bold text-gray-900 mb-3">Udaipur Guide</h4>
+          <div class="space-y-2">
+            <a href="Udaipur_3-Day_Trip_Planner.pdf" target="_blank" class="block text-center bg-indigo-600 text-white text-xs font-semibold py-2 rounded-lg hover:bg-indigo-700 transition">📄 3-Day PDF Plan</a>
+            <a href="Udaipur_7-Day_Trip_Planner.pdf" target="_blank" class="block text-center border border-indigo-600 text-indigo-600 text-xs font-semibold py-2 rounded-lg hover:bg-indigo-50 transition">📄 7-Day PDF Plan</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Action Bar -->
+    <div class="flex flex-wrap gap-4 items-center justify-between pt-4 border-t border-gray-200">
+      <a href="index.html#planner" class="bg-indigo-600 text-white px-8 py-3.5 rounded-xl font-bold hover:bg-indigo-700 transition shadow-lg shadow-indigo-600/30 flex items-center gap-2">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        Generate Custom AI Plan for Rajasthan
       </a>
 
-      <a href="index.html" 
-         class="bg-gray-200 text-gray-800 px-6 py-3 rounded-lg hover:bg-gray-300 transition shadow-md">
-         ⬅ Back to Home
+      <a href="index.html" class="bg-gray-100 text-gray-700 px-6 py-3.5 rounded-xl font-semibold hover:bg-gray-200 transition">
+        ← Back to Home
       </a>
     </div>
   </section>
 
   <!-- Footer -->
-  <footer class="bg-gray-900 text-white py-10 text-center">
-    <p>&copy; 2025 SkyBound Journey. All rights reserved.</p>
+  <footer class="bg-gray-900 text-gray-400 py-10 text-center text-sm mt-auto">
+    <p>&copy; 2026 SkyBound Journey. All rights reserved.</p>
   </footer>
 
 </body>
